@@ -6,9 +6,41 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		37D562C42F548DEC00CA778B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 37D562C32F548DEC00CA778B /* FirebaseFirestore */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		37D562D72F54A16A00CA778B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37CC8BFC2F4B71190002535E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37CC8C032F4B71190002535E;
+			remoteInfo = SoprtTracker;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		37CC8C042F4B71190002535E /* SoprtTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoprtTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37CC8C042F4B71190002535E /* SportTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37D562D32F54A16A00CA778B /* SportTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		37D562DC2F54A20E00CA778B /* Exceptions for "SoprtTrackerTests" folder in "SportTracker" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Data/Repositories/MockActivityRepository.swift,
+			);
+			target = 37CC8C032F4B71190002535E /* SportTracker */;
+		};
+		37D562DD2F54A20E00CA778B /* Exceptions for "SoprtTrackerTests" folder in "SportTrackerTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Data/Repositories/MockActivityRepository.swift,
+			);
+			target = 37D562D22F54A16A00CA778B /* SportTrackerTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		37CC8C062F4B71190002535E /* SoprtTracker */ = {
@@ -16,10 +48,27 @@
 			path = SoprtTracker;
 			sourceTree = "<group>";
 		};
+		37D562D42F54A16A00CA778B /* SoprtTrackerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				37D562DC2F54A20E00CA778B /* Exceptions for "SoprtTrackerTests" folder in "SportTracker" target */,
+				37D562DD2F54A20E00CA778B /* Exceptions for "SoprtTrackerTests" folder in "SportTrackerTests" target */,
+			);
+			path = SoprtTrackerTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		37CC8C012F4B71190002535E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37D562C42F548DEC00CA778B /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37D562D02F54A16A00CA778B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				37CC8C062F4B71190002535E /* SoprtTracker */,
+				37D562D42F54A16A00CA778B /* SoprtTrackerTests */,
 				37CC8C052F4B71190002535E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,7 +90,8 @@
 		37CC8C052F4B71190002535E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				37CC8C042F4B71190002535E /* SoprtTracker.app */,
+				37CC8C042F4B71190002535E /* SportTracker.app */,
+				37D562D32F54A16A00CA778B /* SportTrackerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +99,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		37CC8C032F4B71190002535E /* SoprtTracker */ = {
+		37CC8C032F4B71190002535E /* SportTracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 37CC8C0F2F4B711A0002535E /* Build configuration list for PBXNativeTarget "SoprtTracker" */;
+			buildConfigurationList = 37CC8C0F2F4B711A0002535E /* Build configuration list for PBXNativeTarget "SportTracker" */;
 			buildPhases = (
 				37CC8C002F4B71190002535E /* Sources */,
 				37CC8C012F4B71190002535E /* Frameworks */,
@@ -63,12 +114,36 @@
 			fileSystemSynchronizedGroups = (
 				37CC8C062F4B71190002535E /* SoprtTracker */,
 			);
-			name = SoprtTracker;
+			name = SportTracker;
 			packageProductDependencies = (
+				37D562C32F548DEC00CA778B /* FirebaseFirestore */,
 			);
 			productName = SoprtTracker;
-			productReference = 37CC8C042F4B71190002535E /* SoprtTracker.app */;
+			productReference = 37CC8C042F4B71190002535E /* SportTracker.app */;
 			productType = "com.apple.product-type.application";
+		};
+		37D562D22F54A16A00CA778B /* SportTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37D562D92F54A16A00CA778B /* Build configuration list for PBXNativeTarget "SportTrackerTests" */;
+			buildPhases = (
+				37D562CF2F54A16A00CA778B /* Sources */,
+				37D562D02F54A16A00CA778B /* Frameworks */,
+				37D562D12F54A16A00CA778B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				37D562D82F54A16A00CA778B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				37D562D42F54A16A00CA778B /* SoprtTrackerTests */,
+			);
+			name = SportTrackerTests;
+			packageProductDependencies = (
+			);
+			productName = SoprtTrackerTests;
+			productReference = 37D562D32F54A16A00CA778B /* SportTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -83,9 +158,13 @@
 					37CC8C032F4B71190002535E = {
 						CreatedOnToolsVersion = 26.2;
 					};
+					37D562D22F54A16A00CA778B = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = 37CC8C032F4B71190002535E;
+					};
 				};
 			};
-			buildConfigurationList = 37CC8BFF2F4B71190002535E /* Build configuration list for PBXProject "SoprtTracker" */;
+			buildConfigurationList = 37CC8BFF2F4B71190002535E /* Build configuration list for PBXProject "SportTracker" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -94,18 +173,29 @@
 			);
 			mainGroup = 37CC8BFB2F4B71190002535E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				37D562C22F548DEC00CA778B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 37CC8C052F4B71190002535E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				37CC8C032F4B71190002535E /* SoprtTracker */,
+				37CC8C032F4B71190002535E /* SportTracker */,
+				37D562D22F54A16A00CA778B /* SportTrackerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		37CC8C022F4B71190002535E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37D562D12F54A16A00CA778B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +212,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		37D562CF2F54A16A00CA778B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		37D562D82F54A16A00CA778B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 37CC8C032F4B71190002535E /* SportTracker */;
+			targetProxy = 37D562D72F54A16A00CA778B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		37CC8C0D2F4B711A0002535E /* Debug */ = {
@@ -310,10 +415,52 @@
 			};
 			name = Release;
 		};
+		37D562DA2F54A16A00CA778B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DBM9P9B47T;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.garpinich.SoprtTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SportTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SportTracker";
+			};
+			name = Debug;
+		};
+		37D562DB2F54A16A00CA778B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DBM9P9B47T;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.garpinich.SoprtTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SportTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SportTracker";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		37CC8BFF2F4B71190002535E /* Build configuration list for PBXProject "SoprtTracker" */ = {
+		37CC8BFF2F4B71190002535E /* Build configuration list for PBXProject "SportTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37CC8C0D2F4B711A0002535E /* Debug */,
@@ -322,7 +469,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		37CC8C0F2F4B711A0002535E /* Build configuration list for PBXNativeTarget "SoprtTracker" */ = {
+		37CC8C0F2F4B711A0002535E /* Build configuration list for PBXNativeTarget "SportTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37CC8C102F4B711A0002535E /* Debug */,
@@ -331,7 +478,35 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		37D562D92F54A16A00CA778B /* Build configuration list for PBXNativeTarget "SportTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37D562DA2F54A16A00CA778B /* Debug */,
+				37D562DB2F54A16A00CA778B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		37D562C22F548DEC00CA778B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		37D562C32F548DEC00CA778B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37D562C22F548DEC00CA778B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 37CC8BFC2F4B71190002535E /* Project object */;
 }
