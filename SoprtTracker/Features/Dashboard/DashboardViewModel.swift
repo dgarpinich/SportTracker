@@ -22,6 +22,7 @@ final class DashboardViewModel {
         self.repository = repository
     }
     
+    @MainActor
     func send(_ action: Action) {
         switch action {
         case .onAppear:
@@ -109,10 +110,4 @@ extension DashboardViewModel {
             }
         }
     }
-}
-
-enum ActivityFilter: String, CaseIterable {
-    case all = "All"
-    case local = "Local"
-    case remote = "Remote"
 }

@@ -14,33 +14,33 @@ struct ActivityCardView: View {
         HStack(alignment: .top, spacing: 16) {
             Image(systemName: record.storageType == .local ? "iphone" : "cloud")
                 .font(.title2)
-                .foregroundColor(record.storageType == .local ? .green : .blue)
+                .foregroundStyle(record.storageType == .local ? .green : .blue)
 
             VStack(alignment: .leading, spacing: 6) {
                 Text(record.title)
                     .font(.headline)
-                    .foregroundColor(.primary)
+                    .foregroundStyle(.primary)
                 
                 HStack(spacing: 4) {
                     Image(systemName: "mappin.and.ellipse")
                     Text(record.location)
                 }
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 
                 HStack(spacing: 4) {
                     Image(systemName: "clock")
                     Text(record.formattedDuration)
                 }
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             }
             
             Spacer()
         }
         .padding()
             .background(Color(uiColor: .secondarySystemGroupedBackground))
-            .cornerRadius(16)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
             .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 4)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)

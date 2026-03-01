@@ -20,9 +20,8 @@ struct SportTrackerApp: App {
         
         do {
             container = try ModelContainer(for: LocalActivityModel.self)
-            let context = container.mainContext
             
-            let localService = SwiftDataService(context: context)
+            let localService = SwiftDataService(container: container)
             let remoteService = FirestoreService()
             
             let commonRepository = AppActivityRepository(localService: localService, remoteService: remoteService)

@@ -8,26 +8,31 @@
 import Foundation
 import SwiftData
 
-@MainActor
 final class SwiftDataService: ActivityDataSourceProtocol {
-    private let context: ModelContext
+    private let container: ModelContainer
     
-    init(context: ModelContext) {
-        self.context = context
+    init(container: ModelContainer) {
+        self.container = container
     }
     
     func save(_ record: ActivityRecord) async throws {
+        let context = ModelContext(container)
+        
         let model = LocalActivityModel(from: record)
+        
         context.insert(model)
         try context.save()
     }
     
     func fetchAll() async throws -> [ActivityRecord] {
+        let context = ModelContext(container)
+        
         let descriptor = FetchDescriptor<LocalActivityModel>(
             sortBy: [SortDescriptor(\.date, order: .reverse)]
         )
         
         let models = try context.fetch(descriptor)
+        
         return models.map(\.toActivityRecord)
     }
 }
