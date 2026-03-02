@@ -42,7 +42,14 @@ final class DashboardViewModel {
             
         case .setFilter(let newFilter):
             currentFilter = newFilter
-            applyCurrentFilter()
+            
+            let filteredRecords =  applyCurrentFilter()
+        
+            state = .success(
+                filteredRecords,
+                filter: currentFilter,
+                warningMessage: nil
+            )
         }
         
     }
@@ -53,7 +60,13 @@ final class DashboardViewModel {
         Task {
             do {
                 allRecords = try await repository.fetchRecords()
-                applyCurrentFilter()
+                let filteredRecords =  applyCurrentFilter()
+                
+                state = .success(
+                    filteredRecords,
+                    filter: currentFilter,
+                    warningMessage: nil
+                )
                 
             } catch let error as RepositoryError {
                 if case .networkError(let partialData) = error {
@@ -69,19 +82,17 @@ final class DashboardViewModel {
         }
     }
     
-    private func applyCurrentFilter() {
-        let filteredRecords: [ActivityRecord]
+    private func applyCurrentFilter() -> [ActivityRecord] {
         
         switch currentFilter {
         case .all:
-            filteredRecords = allRecords
+            allRecords
         case .local:
-            filteredRecords = allRecords.filter { $0.storageType == .local }
+            allRecords.filter { $0.storageType == .local }
         case .remote:
-            filteredRecords = allRecords.filter { $0.storageType == .remote }
+            allRecords.filter { $0.storageType == .remote }
         }
         
-        state = .success(filteredRecords, filter: currentFilter, warningMessage: nil)
     }
 }
 

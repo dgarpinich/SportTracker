@@ -39,8 +39,7 @@ final class ActivityFormViewModel {
     }
 }
 
-extension ActivityFormViewModel: Identifiable {
-    var id: ObjectIdentifier { ObjectIdentifier(self) }
+extension ActivityFormViewModel {
     
     enum State {
         case idle
