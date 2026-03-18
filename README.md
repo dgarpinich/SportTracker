@@ -193,6 +193,6 @@ Unit tests cover `DashboardViewModel` using `MockActivityRepository`, which simu
 
 1. Clone the repository.
 2. Open `SportTracker.xcodeproj`.
-3. Add your own `GoogleService-Info.plist` from the [Firebase Console](https://console.firebase.google.com/) to the `SoprtTracker/` folder (replace the existing placeholder).
+3. Add your own `GoogleService-Info.plist` from the [Firebase Console](https://console.firebase.google.com/) to the `SoprtTracker/` folder.
 4. In Firestore, create a collection named `activities` (it will be created automatically on first write if you have write rules enabled).
 5. Build and run on a simulator or device running iOS 17+.
