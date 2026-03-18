@@ -39,18 +39,18 @@ struct ActivityFormView: View {
                 durationSection
                 errorSection
             }
-            .navigationTitle("New Activity")
+            .navigationTitle(.formTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
+                    Button(.commonCancel) {
                         onDismiss(false)
                         dismiss()
                     }
                     .disabled(isLoading)
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") { save() }
+                    Button(.commonSave) { save() }
                         .disabled(!isFormValid || isLoading)
                 }
             }
@@ -67,10 +67,10 @@ struct ActivityFormView: View {
     }
     
     private var storageSection: some View {
-        Section(header: Text("Storage")) {
-            Picker("Save to", selection: $storageType) {
-                Text("Local").tag(StorageType.local)
-                Text("Remote").tag(StorageType.remote)
+        Section(header: Text(.formSectionStorage)) {
+            Picker(.formStorageSaveTo, selection: $storageType) {
+                Text(.formStorageLocal).tag(StorageType.local)
+                Text(.formStorageRemote).tag(StorageType.remote)
             }
             .pickerStyle(.segmented)
             .listRowBackground(Color.clear)
@@ -79,25 +79,25 @@ struct ActivityFormView: View {
     }
     
     private var detailsSection: some View {
-        Section(header: Text("Activity Details")) {
-            TextField("Title (e.g., Morning Run)", text: $title)
-            TextField("Location (e.g., Stromovka)", text: $location)
+        Section(header: Text(.formSectionDetails)) {
+            TextField(.formFieldTitlePlaceholder, text: $title)
+            TextField(.formFieldLocationPlaceholder, text: $location)
         }
     }
     
     private var durationSection: some View {
-        Section(header: Text("Duration")) {
+        Section(header: Text(.formSectionDuration)) {
             HStack(spacing: 0) {
-                Picker("Hours", selection: $hours) {
+                Picker(.formDurationHours, selection: $hours) {
                     ForEach(0...23, id: \.self) { hour in
-                        Text("\(hour) h").tag(hour)
+                        Text(.formHoursValue(hour)).tag(hour)
                     }
                 }
                 .pickerStyle(.wheel)
                 .clipped()
-                Picker(selection: $minutes, label: Text("minutes")) {
+                Picker(selection: $minutes, label: Text(.formDurationMinutes)) {
                     ForEach(0...59, id: \.self) { minute in
-                        Text("\(minute) min").tag(minute)
+                        Text(.formMinutesValue(minute)).tag(minute)
                     }
                 }
                 .pickerStyle(.wheel)

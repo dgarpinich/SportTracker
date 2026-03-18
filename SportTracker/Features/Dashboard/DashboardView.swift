@@ -15,7 +15,7 @@ struct DashboardView: View {
             Group {
                 switch viewModel.state {
                 case .loading:
-                    ProgressView("Loading activities...")
+                    ProgressView(.dashboardLoading)
                         .controlSize(.large)
                     
                 case .success(let records, let filter, let warningMessage):
@@ -25,7 +25,7 @@ struct DashboardView: View {
                         onChangeFilter: { viewModel.send(.setFilter($0)) }
                     )
                     .alert(
-                        "Warning",
+                        .commonWarning,
                         isPresented: Binding(
                             get: { warningMessage != nil },
                             set: { isPresented in
@@ -34,7 +34,7 @@ struct DashboardView: View {
                                 }
                             }
                         ),
-                        actions: { Button("Ok", role: .cancel) { } },
+                        actions: { Button(.commonOk, role: .cancel) { } },
                         message: { Text(warningMessage ?? "") }
                     )
                     
@@ -46,10 +46,10 @@ struct DashboardView: View {
                     .padding()
                 }
             }
-            .navigationTitle("Dashboard")
+            .navigationTitle(.dashboardTitle)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Add", systemImage: "plus.circle.fill") {
+                    Button(.commonAdd, systemImage: "plus.circle.fill") {
                         viewModel.send(.tapAddActivity)
                     }
                 }.sharedBackgroundVisibility(.hidden)
@@ -81,12 +81,12 @@ extension DashboardView {
         
         var body: some View {
             ScrollView {
-                Picker("Filter", selection: Binding(
+                Picker(.dashboardFilter, selection: Binding(
                     get: { filter },
                     set: { onChangeFilter($0) }
                 )) {
                     ForEach(ActivityFilter.allCases, id: \.self) { filter in
-                        Text(filter.rawValue).tag(filter)
+                        Text(filter.title).tag(filter)
                     }
                 }
                 .pickerStyle(.segmented)
@@ -95,9 +95,9 @@ extension DashboardView {
                 Group {
                     if records.isEmpty {
                         ContentUnavailableView(
-                            "No activities yet.",
+                            .dashboardEmptyState,
                             systemImage: "figure.run",
-                            description: Text("Time to start your first workout!")
+                            description: Text(.dashboardEmptyStateDescription)
                         )
                     } else {
                         LazyVStack(spacing: 16) {
@@ -128,7 +128,7 @@ extension DashboardView {
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.secondary)
                 
-                Button("Try Again") { onTryAginTap() }
+                Button(.commonTryAgain) { onTryAginTap() }
                     .buttonStyle(.borderedProminent)
             }
         }
