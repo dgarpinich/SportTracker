@@ -56,11 +56,16 @@ struct DashboardView: View {
             }
             .sheet(item: Binding(
                 get: { viewModel.destination },
-                set: { if $0 == nil { viewModel.send(.dismissForm) } }
+                set: { if $0 == nil { viewModel.send(.dismissForm(false)) } }
             )) { destination in
                 switch destination {
                 case .form(let formViewModel):
-                    ActivityFormView(viewModel: formViewModel)
+                    ActivityFormView(
+                        viewModel: formViewModel,
+                        onDismiss: { didSave in
+                            viewModel.send(.dismissForm(didSave))
+                        }
+                    )
                 }
             }
             .onAppear { viewModel.send(.onAppear) }

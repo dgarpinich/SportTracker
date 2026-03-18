@@ -14,13 +14,19 @@ final class DashboardViewModel {
     private(set) var state: State = .loading
     private(set) var destination: Destination?
     
-    private let repository: any ActivityRepositoryProtocol
+    private let fetchActivitiesUseCase: any FetchActivitiesUseCaseProtocol
+    
+    private let makeFormViewModel: () -> ActivityFormViewModel
     
     private var filter: ActivityFilter = .all
     private var allRecords: [ActivityRecord] = []
     
-    init (repository: any ActivityRepositoryProtocol) {
-        self.repository = repository
+    init (
+        fetchActivitiesUseCase: any FetchActivitiesUseCaseProtocol,
+        makeFormViewModel: @escaping () -> ActivityFormViewModel
+    ) {
+        self.fetchActivitiesUseCase = fetchActivitiesUseCase
+        self.makeFormViewModel = makeFormViewModel
     }
 
     func send(_ action: Action) {
@@ -29,11 +35,13 @@ final class DashboardViewModel {
             fetchActivities()
             
         case .tapAddActivity:
-            destination = .form(ActivityFormViewModel(repository: repository))
+            destination = .form(makeFormViewModel())
             
-        case .dismissForm:
+        case .dismissForm(let didSave):
+            guard destination != nil else { return }
+            
             destination = nil
-            fetchActivities()
+            if didSave { fetchActivities() }
             
         case .dismissWarningAlert:
             if case .success(let records, let filter, _) = state {
@@ -56,40 +64,35 @@ final class DashboardViewModel {
     
     private func fetchActivities() {
         state = .loading
-        let currentFilter = filter
         
         Task {
-            do {
-                allRecords = try await repository.fetchRecords()
-                let filteredRecords =  applyFilter(currentFilter)
+            switch await fetchActivitiesUseCase.execute() {
+            case .success(let records):
+                allRecords = records
                 
                 state = .success(
-                    filteredRecords,
-                    filter: currentFilter,
+                    applyFilter(),
+                    filter: filter,
                     warningMessage: nil
                 )
                 
-            } catch let error as RepositoryError {
-                if case .networkError(let partialData) = error {
-                    allRecords = partialData
-                    let filteredRecords =  applyFilter(currentFilter)
-                    
-                    state = .success(
-                        filteredRecords,
-                        filter: currentFilter,
-                        warningMessage: error.localizedDescription
-                    )
-                } else {
-                    state = .error("Failed to load data: \(error.localizedDescription)")
-                }
-            } catch {
-                state = .error("Failed to load data: \(error.localizedDescription)")
+            case .partialSuccess(let partialData, let warningMessage):
+                allRecords = partialData
+                
+                state = .success(
+                    applyFilter(),
+                    filter: filter,
+                    warningMessage: warningMessage
+                )
+                
+            case .failure(let message):
+                state = .error(message)
             }
         }
     }
     
-    private func applyFilter(_ currentFilter: ActivityFilter? = nil) -> [ActivityRecord] {
-        switch currentFilter ?? filter {
+    private func applyFilter() -> [ActivityRecord] {
+        switch filter {
         case .all:
             allRecords
         case .local:
@@ -112,7 +115,7 @@ extension DashboardViewModel {
     enum Action{
         case onAppear
         case tapAddActivity
-        case dismissForm
+        case dismissForm(Bool)
         case dismissWarningAlert
         case setFilter(ActivityFilter)
     }

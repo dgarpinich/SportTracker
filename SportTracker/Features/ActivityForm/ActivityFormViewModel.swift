@@ -12,10 +12,10 @@ import Observation
 @Observable
 final class ActivityFormViewModel {
     private(set) var state: State = .idle
-    private let repository: any ActivityRepositoryProtocol
+    private let saveActivityUseCase: any SaveActivityUseCaseProtocol
     
-    init (repository: any ActivityRepositoryProtocol) {
-        self.repository = repository
+    init (saveActivityUseCase: any SaveActivityUseCaseProtocol) {
+        self.saveActivityUseCase = saveActivityUseCase
     }
     
     func send(_ action: Action) {
@@ -28,11 +28,11 @@ final class ActivityFormViewModel {
     private func saveActivity(_ formData: FormData) async {
         state = .loading
         
-        do {
-            try await repository.saveRecord(formData.toRecord)
+        switch await saveActivityUseCase.execute(formData.toRecord) {
+            case .success:
             state = .saved
-        } catch {
-            state = .error("Failed to save activity: \(error.localizedDescription)")
+        case .failure(let error):
+            state = .error(error.localizedCapitalized)
         }
     }
 }

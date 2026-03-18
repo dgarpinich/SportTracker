@@ -13,7 +13,7 @@ import FirebaseCore
 struct SportTrackerApp: App {
     let container: ModelContainer
     
-    @State private var dashboardViewModel: DashboardViewModel
+    private let commonRepository: any ActivityRepositoryProtocol
     
     init() {
         FirebaseApp.configure()
@@ -24,19 +24,28 @@ struct SportTrackerApp: App {
             let localService = SwiftDataService(container: container)
             let remoteService = FirestoreService()
             
-            let commonRepository = AppActivityRepository(localService: localService, remoteService: remoteService)
-            
-            _dashboardViewModel = State(initialValue: .init(repository: commonRepository))
-            
+            commonRepository = AppActivityRepository(localService: localService, remoteService: remoteService)
         } catch {
             fatalError("Failed to initialize SwiftData: \(error.localizedDescription)")
         }
-        
     }
     
     var body: some Scene {
         WindowGroup {
-            DashboardView(viewModel: dashboardViewModel)
+            DashboardView(viewModel: makeDashboardViewModel())
         }
+    }
+    
+    private func makeDashboardViewModel() -> DashboardViewModel {
+        DashboardViewModel(
+            fetchActivitiesUseCase: FetchActivitiesUseCase(repository: commonRepository),
+            makeFormViewModel: makeFormViewModel
+        )
+    }
+    
+    private func makeFormViewModel() -> ActivityFormViewModel {
+        ActivityFormViewModel(
+            saveActivityUseCase: SaveActivityUseCase(repository: commonRepository)
+        )
     }
 }

@@ -11,6 +11,7 @@ struct ActivityFormView: View {
     @Environment(\.dismiss) private var dismiss
     
     let viewModel: ActivityFormViewModel
+    var onDismiss: (Bool) -> Void
     
     @State private var title: String = ""
     @State private var location: String = ""
@@ -42,8 +43,11 @@ struct ActivityFormView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
-                        .disabled(isLoading)
+                    Button("Cancel") {
+                        onDismiss(false)
+                        dismiss()
+                    }
+                    .disabled(isLoading)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") { save() }
@@ -54,7 +58,10 @@ struct ActivityFormView: View {
                 if isLoading { loadingOverlay }
             }
             .onChange(of: viewModel.state) {
-                if case .saved = viewModel.state { dismiss() }
+                if case .saved = viewModel.state {
+                    onDismiss(true)
+                    dismiss()
+                }
             }
         }
     }
