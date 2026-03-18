@@ -8,42 +8,41 @@
 import Foundation
 import Observation
 
+@MainActor
 @Observable
 final class ActivityFormViewModel {
     private(set) var state: State = .idle
-    private let repository: ActivityRepositoryProtocol
+    private let repository: any ActivityRepositoryProtocol
     
-    init (repository: ActivityRepositoryProtocol) {
+    init (repository: any ActivityRepositoryProtocol) {
         self.repository = repository
     }
     
-    func send(_ action: Action) async -> Bool {
+    func send(_ action: Action) {
         switch action {
         case .save(let formData):
-            return await saveActivity(formData)
+            Task { await saveActivity(formData) }
         }
     }
     
-    private func saveActivity(_ formData: FormData) async -> Bool {
+    private func saveActivity(_ formData: FormData) async {
         state = .loading
         
         do {
             try await repository.saveRecord(formData.toRecord)
-            
-            state = .idle
-            return true
+            state = .saved
         } catch {
             state = .error("Failed to save activity: \(error.localizedDescription)")
-            return false
         }
     }
 }
 
 extension ActivityFormViewModel {
     
-    enum State {
+    enum State: Equatable{
         case idle
         case loading
+        case saved
         case error(String)
     }
     

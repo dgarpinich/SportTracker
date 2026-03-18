@@ -56,7 +56,7 @@ struct DashboardView: View {
             }
             .sheet(item: Binding(
                 get: { viewModel.destination },
-                set: { if $0 == nil { viewModel.send(.dissmissForm) } }
+                set: { if $0 == nil { viewModel.send(.dismissForm) } }
             )) { destination in
                 switch destination {
                 case .form(let formViewModel):
@@ -130,9 +130,9 @@ extension DashboardView {
     }
 }
 
-#Preview {
-    let mockRepo = MockActivityRepository()
-    let viewModel = DashboardViewModel(repository: mockRepo)
-    
-    DashboardView(viewModel: viewModel)
-}
+//#Preview {
+//    let mockRepo = MockActivityRepository()
+//    let viewModel = DashboardViewModel(repository: mockRepo)
+//    
+//    DashboardView(viewModel: viewModel)
+//}

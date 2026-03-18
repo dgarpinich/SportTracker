@@ -25,36 +25,15 @@
 		37D562D32F54A16A00CA778B /* SportTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		37D562DC2F54A20E00CA778B /* Exceptions for "SoprtTrackerTests" folder in "SportTracker" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Data/Repositories/MockActivityRepository.swift,
-			);
-			target = 37CC8C032F4B71190002535E /* SportTracker */;
-		};
-		37D562DD2F54A20E00CA778B /* Exceptions for "SoprtTrackerTests" folder in "SportTrackerTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Data/Repositories/MockActivityRepository.swift,
-			);
-			target = 37D562D22F54A16A00CA778B /* SportTrackerTests */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		37CC8C062F4B71190002535E /* SoprtTracker */ = {
+		37CC8C062F4B71190002535E /* SportTracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SoprtTracker;
+			path = SportTracker;
 			sourceTree = "<group>";
 		};
-		37D562D42F54A16A00CA778B /* SoprtTrackerTests */ = {
+		37D562D42F54A16A00CA778B /* SportTrackerTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				37D562DC2F54A20E00CA778B /* Exceptions for "SoprtTrackerTests" folder in "SportTracker" target */,
-				37D562DD2F54A20E00CA778B /* Exceptions for "SoprtTrackerTests" folder in "SportTrackerTests" target */,
-			);
-			path = SoprtTrackerTests;
+			path = SportTrackerTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -81,8 +60,8 @@
 		37CC8BFB2F4B71190002535E = {
 			isa = PBXGroup;
 			children = (
-				37CC8C062F4B71190002535E /* SoprtTracker */,
-				37D562D42F54A16A00CA778B /* SoprtTrackerTests */,
+				37CC8C062F4B71190002535E /* SportTracker */,
+				37D562D42F54A16A00CA778B /* SportTrackerTests */,
 				37CC8C052F4B71190002535E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,7 +91,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				37CC8C062F4B71190002535E /* SoprtTracker */,
+				37CC8C062F4B71190002535E /* SportTracker */,
 			);
 			name = SportTracker;
 			packageProductDependencies = (
@@ -136,7 +115,7 @@
 				37D562D82F54A16A00CA778B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				37D562D42F54A16A00CA778B /* SoprtTrackerTests */,
+				37D562D42F54A16A00CA778B /* SportTrackerTests */,
 			);
 			name = SportTrackerTests;
 			packageProductDependencies = (
@@ -288,9 +267,11 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-enable-upcoming-feature BareSlashRegexLiterals -enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature StrictConcurrency -warn-concurrency -enable-actor-data-race-checks";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -345,8 +326,10 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-enable-upcoming-feature BareSlashRegexLiterals -enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature StrictConcurrency -warn-concurrency -enable-actor-data-race-checks";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

@@ -8,10 +8,10 @@
 import Foundation
 
 final class AppActivityRepository: ActivityRepositoryProtocol {
-    private let localService: ActivityDataSourceProtocol
-    private let remoteService: ActivityDataSourceProtocol
+    private let localService: any ActivityDataSourceProtocol
+    private let remoteService: any ActivityDataSourceProtocol
     
-    init(localService: ActivityDataSourceProtocol, remoteService: ActivityDataSourceProtocol) {
+    init(localService: any ActivityDataSourceProtocol, remoteService: any ActivityDataSourceProtocol) {
         self.localService = localService
         self.remoteService = remoteService
     }
